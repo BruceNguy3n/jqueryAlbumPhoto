@@ -80,7 +80,7 @@ var albums =
 			}
 		});
 
-		$('#dialogZoomm').dialog(
+		$('#dialogZoom').dialog(
 		{
 			resizable: false,
 			autoOpen: false,
@@ -102,7 +102,7 @@ var albums =
 				$('#txtImageName').val(pictureName);
 				$('#dialogEdit').dialog('open');
 			}
-			else if(target.is('a.ui.icon-trash'))
+			else if(target.is('a.ui-icon-trash'))
 			{
 				var pictureId = target.data('id');
 				albums.currentPictureId = pictureId;
