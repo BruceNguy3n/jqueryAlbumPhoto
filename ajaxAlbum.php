@@ -37,7 +37,7 @@
 							unset($album->pictures[$index]);
 							$remaining = array_values($album->pictures);
 							$album->pictures = $remaining;
-							file_put_contents('albums.json', json_decode($jsonAlbums));
+							file_put_contents('albums.json', json_encode($jsonAlbums));
 							break;
 						}
 					}
