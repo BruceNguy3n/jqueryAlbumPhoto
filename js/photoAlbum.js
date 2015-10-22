@@ -54,8 +54,10 @@ var albums =
 					});
 					$.each(allPictures, function(key, picture)
 					{
-						listItems += '<li class="ui-widget-content" id="picture_' + picture.id + '">';
-						listItems += '<h5 class="ui-widget-header"><span id="pictureName_' + picture.id 
+						listItems += '<li class="ui-widget-content" id="picture_' + picture.id 
+										+ '">';
+						listItems += '<h5 class="ui-widget-header"><span id="pictureName_' 
+										+ picture.id 
 										+ '">' + picture.imageTitle + '</span>';
 						listItems += '<div class="icons">';
 						listItems += '<a href="#" title="Edit?" class="ui-icon ui-icon-pencil" data-id'
@@ -75,10 +77,10 @@ var albums =
 				{
 					listItems += '<li class="ui-widget-content">No pictures in this album</li>';
 				}
+				$('#numImages').text(this.jsonAlbums[i].pictures.length + ' pictures');
+				$('#albumPics').html(listItems);
+				break;
 			}
-			$('#numImages').text(this.jsonAlbums[i].pictures.length + ' pictures');
-			$('#albumPics').html(listItems);
-			break;
 		}
 	},
 	editImage: function()
