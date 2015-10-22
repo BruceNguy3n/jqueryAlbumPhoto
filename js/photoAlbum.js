@@ -40,6 +40,86 @@ var albums =
 			placeholder: "ui-state-highlight",
 			cursor: 'move'
 		});
+
+		$('#dialogEdit').dialog(
+		{
+			resizable: false,
+			autoOpen: false,
+			modal: true,
+			buttons:
+			{
+				Save: function()
+				{
+					albums.editImage();
+				},
+				Cancel: function()
+				{
+					$('#txtImageName').val('');
+					albums.currentPictureId = null;
+					$(this).dialog("close");
+				}
+			}
+		});
+
+		$('#dialogDelete').dialog(
+		{
+			resizable: false,
+			autoOpen: false,
+			modal: true,
+			buttons:
+			{
+				Delete: function()
+				{
+					albums.deleteImage();
+				},
+				Cancel: function()
+				{
+					albums.currentPictureId = null;
+					$(this).dialog("close");
+				}
+			}
+		});
+
+		$('#dialogZoomm').dialog(
+		{
+			resizable: false,
+			autoOpen: false,
+			modal: true,
+			position: "top",
+			width: 430,
+			show: 'scale',
+			hide: 'scale'
+		});
+
+		$('ul#albumPics').on('click', function(event)
+		{
+			var target = $(event.target);
+			if(target.is('a.ui-icon-pencil'))
+			{
+				var pictureId = target.data('id');
+				var pictureName = target.data('name');
+				albums.currentPictureId = pictureId;
+				$('#txtImageName').val(pictureName);
+				$('#dialogEdit').dialog('open');
+			}
+			else if(target.is('a.ui.icon-trash'))
+			{
+				var pictureId = target.data('id');
+				albums.currentPictureId = pictureId;
+				$('#dialogDelete').dialog('open');
+			}
+			else if(target.is('img.large'))
+			{
+				var largeImagePath = target.parent().attr('href');
+				$('#dialogZoom').html('<img src="' + largeImagePath + '">').dialog('open');
+			}
+			return false;
+		});
+
+		$('#btnSave').on('click', function()
+		{
+			albums.saveNewSequence();
+		});
 	},
 	displayAlbum: function(albumId)
 	{
