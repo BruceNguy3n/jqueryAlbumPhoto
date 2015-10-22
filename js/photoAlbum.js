@@ -113,7 +113,7 @@ var albums =
 				var largeImagePath = target.parent().attr('href');
 				$('#dialogZoom').html('<img src="' + largeImagePath + '">').dialog('open');
 			}
-			/*return false;*/
+			return false;
 		});
 
 		$('#btnSave').on('click', function()
@@ -172,14 +172,77 @@ var albums =
 	},
 	editImage: function()
 	{
+		var editImageRequest = $.ajax(
+		{
+			url: 'ajaxAlbum.php',
+			type: 'POST',
+			data: {action: 'edit', albumId: albums.currentAlbum,
+					pictureId: albums.currentPictureId, newImageName: $('#txtImageName').val()}
+		});
 
+		editImageRequest.done(function(data)
+		{
+			$.getJSON("albums.json", function(data)
+			{
+				albums.jsonAlbums = data;
+				$('#pictureName_' + albums.currentPictureId).text($('#txtImageName').val());
+				$('#dialogEdit').dialog('close');
+			});
+		});
+
+		editImageRequest.fail(function(xhr, status)
+		{
+			alert("Error - " + status);
+		});
 	},
 	deleteImage: function()
 	{
+		var deleteImageRequest = $.ajax(
+		{
+			url: 'ajaxAlbum.php',
+			type: 'POST',
+			data: {action: 'delete', albumId: albums.currentAlbum,
+					pictureId: albums.currentPictureId}
+		});
 
+		deleteImageRequest.done(function(data)
+		{
+			$.getJSON('albums.json', function(data)
+			{
+				albums.jsonAlbums = data;
+				albums.displayAlbum(albums.currentAlbum);
+			});
+			$('#dialogDelete').dialog('close');
+		});
+
+		deleteImageRequest.fail(function(xhr, status)
+		{
+			alert("Error - " + status);
+		});
 	},
 	saveNewSequence: function()
 	{
+		var x = ($('#albumPics').sortable('serialize'));
+		console.log(x);
+		var editSequenceRequest = $.ajax(
+		{
+			url: 'ajaxAlbum.php',
+			type: 'POST',
+			data: 'action=reorder&albumId=' + albums.currentAlbum + '&' + x
+		});
 
+		editSequenceRequest.done(function(data)
+		{
+			$.getJSON("albums.json", function(data)
+			{
+				albums.jsonAlbums = data;
+				albums.displayAlbum(albums.currentAlbum);
+			})
+		});
+
+		editSequenceRequest.fail(function(xhr, status)
+		{
+			alert('Error - ' + status);
+		});
 	}
 };	
