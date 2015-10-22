@@ -147,7 +147,7 @@ var albums =
 										+ picture.id 
 										+ '">' + picture.imageTitle + '</span>';
 						listItems += '<div class="icons">';
-						listItems += '<a href="#" title="Edit?" class="ui-icon ui-icon-pencil" data-id'
+						listItems += '<a href="#" title="Edit?" class="ui-icon ui-icon-pencil" data-id="'
 										+ picture.id + '" data-name="' + picture.imageTitle + '"></a>';
 						listItems += '<a href="#" title="Delete?" class="ui-icon ui-icon-trash" data-id="'
 										+ picture.id + '"></a>';
@@ -185,7 +185,6 @@ var albums =
 			$.getJSON("albums.json", function(data)
 			{
 				albums.jsonAlbums = data;
-				console.log($('#txtImageName').val());
 				$('#pictureName_' + albums.currentPictureId).text($('#txtImageName').val());
 				$('#dialogEdit').dialog('close');
 			});
