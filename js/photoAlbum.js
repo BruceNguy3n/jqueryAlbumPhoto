@@ -33,6 +33,13 @@ var albums =
 		{
 			albums.displayAlbum($(this).data('id'));
 		});
+
+		$('#albumPics').sortable(
+		{
+			handle: '.ui-widget-header',
+			placeholder: 'ui-state-highlight',
+			cursor: 'move'
+		});
 	},
 	displayAlbum: function(albumId)
 	{
