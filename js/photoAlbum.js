@@ -36,7 +36,7 @@ var albums =
 	},
 	displayAlbum: function(albumId)
 	{
-		$('albumPics').empty();
+		$('#albumPics').empty();
 		$('#btnSave').hide();
 		this.currentAlbum = albumId;
 		var listItems = '';
