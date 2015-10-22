@@ -37,7 +37,7 @@ var albums =
 		$('#albumPics').sortable(
 		{
 			handle: '.ui-widget-header',
-			placeholder: 'ui-state-highlight',
+			placeholder: "ui-state-highlight",
 			cursor: 'move'
 		});
 	},
