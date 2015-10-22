@@ -113,7 +113,7 @@ var albums =
 				var largeImagePath = target.parent().attr('href');
 				$('#dialogZoom').html('<img src="' + largeImagePath + '">').dialog('open');
 			}
-			return false;
+			/*return false;*/
 		});
 
 		$('#btnSave').on('click', function()
