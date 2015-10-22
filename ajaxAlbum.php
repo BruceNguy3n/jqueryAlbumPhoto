@@ -2,7 +2,7 @@
 	$albumId = $_POST['albumId'];
 	$pictureId = $_POST['pictureId'];
 
-	$jsonAlbums = file_getcontents('albums.json');
+	$jsonAlbums = file_get_contents('albums.json');
 	$jsonAlbums = json_decode($jsonAlbums);
 	switch($_POST['action'])
 	{
