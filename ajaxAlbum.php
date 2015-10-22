@@ -1,6 +1,6 @@
 <?php
 	$albumId = $_POST['albumId'];
-	$picutureId = $_POST['pictureId'];
+	$pictureId = $_POST['pictureId'];
 
 	$jsonAlbums = file_getcontents('albums.json');
 	$jsonAlbums = json_decode($jsonAlbums);
