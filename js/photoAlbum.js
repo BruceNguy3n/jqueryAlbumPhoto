@@ -116,7 +116,7 @@ var albums =
 			return false;
 		});
 
-		$('#btnSave').on('click', function()
+		$('#btnSave').button().on('click', function()
 		{
 			albums.saveNewSequence();
 		});
@@ -185,6 +185,7 @@ var albums =
 			$.getJSON("albums.json", function(data)
 			{
 				albums.jsonAlbums = data;
+				console.log($('#txtImageName').val());
 				$('#pictureName_' + albums.currentPictureId).text($('#txtImageName').val());
 				$('#dialogEdit').dialog('close');
 			});
