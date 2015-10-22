@@ -69,7 +69,7 @@ var albums =
 						listItems += '</a>';
 						listItems += '</li>';
 					});
-					#('#btnSave').show();
+					$('#btnSave').show();
 				}
 				else
 				{
